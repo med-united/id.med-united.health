@@ -10,7 +10,9 @@ spec:
   issuerRef:
     name: letsencrypt-cluster-issuer
     kind: ClusterIssuer
+
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -66,6 +68,17 @@ spec:
           httpGet:
             path: /realms/master
             port: 8080
+        volumeMounts:
+          - name: id-volume
+            subPath: account
+            mountPath: /opt/keycloak/themes/custom/account/account.tfl
+          - name: id-volume
+            subPath: properties
+            mountPath: /opt/keycloak/themes/custom/account/theme.properties
+      volumes:
+        - name: id-volume
+          configMap:
+            name: id-config
 ---
 
 kind: Service
@@ -102,3 +115,142 @@ spec:
               name: id
               port:
                 number: 8080
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: id-config
+data:
+  account: |
+    <#import "template.ftl" as layout>
+        <@layout.mainLayout active='account' bodyClass='user' ; section>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <h2>${msg("editAccountHtmlTitle")}</h2>
+                </div>
+                <div class="col-md-2 subtitle">
+                    <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
+                </div>
+            </div>
+
+            <form action="${url.accountUrl}" class="form-horizontal" method="post">
+
+                <input type="hidden" id="stateChecker" name="stateChecker" value="${stateChecker}">
+
+                <#if !realm.registrationEmailAsUsername>
+                    <div class="form-group ${messagesPerField.printIfExists('username','has-error')}">
+                        <div class="col-sm-2 col-md-2">
+                            <label for="username" class="control-label">${msg("username")}</label>
+                            <#if realm.editUsernameAllowed><span class="required">*</span></#if>
+                        </div>
+
+                        <div class="col-sm-10 col-md-10">
+                            <input type="text" class="form-control" id="username" name="username" <#if
+                                !realm.editUsernameAllowed>disabled="disabled"
+                </#if> value="${(account.username!'')}"/>
+                </div>
+                </div>
+                </#if>
+
+                <div class="form-group ${messagesPerField.printIfExists('email','has-error')}">
+                    <div class="col-sm-2 col-md-2">
+                        <label for="email" class="control-label">${msg("email")}</label> <span class="required">*</span>
+                    </div>
+
+                    <div class="col-sm-10 col-md-10">
+                        <input type="text" class="form-control" id="email" name="email" autofocus
+                            value="${(account.email!'')}" />
+                    </div>
+                </div>
+
+                <div class="form-group ${messagesPerField.printIfExists('firstName','has-error')}">
+                    <div class="col-sm-2 col-md-2">
+                        <label for="firstName" class="control-label">${msg("firstName")}</label> <span
+                            class="required">*</span>
+                    </div>
+
+                    <div class="col-sm-10 col-md-10">
+                        <input type="text" class="form-control" id="firstName" name="firstName"
+                            value="${(account.firstName!'')}" />
+                    </div>
+                </div>
+
+                <div class="form-group ${messagesPerField.printIfExists('lastName','has-error')}">
+                    <div class="col-sm-2 col-md-2">
+                        <label for="lastName" class="control-label">${msg("lastName")}</label> <span
+                            class="required">*</span>
+                    </div>
+
+                    <div class="col-sm-10 col-md-10">
+                        <input type="text" class="form-control" id="lastName" name="lastName"
+                            value="${(account.lastName!'')}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2 col-md-2">
+                        <label for="user.attributes.phone" class="control-label">Phone</label>
+                    </div>
+
+                    <div class="col-sm-10 col-md-10">
+                        <input type="text" class="form-control" id="user.attributes.phone" name="user.attributes.phone"
+                            value="${(account.attributes.phone!'')}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2 col-md-2">
+                        <label for="user.attributes.postalCode" class="control-label">Postal code</label>
+                    </div>
+
+                    <div class="col-sm-10 col-md-10">
+                        <input type="text" class="form-control" id="user.attributes.postalCode" name="user.attributes.postalCode"
+                            value="${(account.attributes.postalCode!'')}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2 col-md-2">
+                        <label for="user.attributes.street" class="control-label">Street</label>
+                    </div>
+
+                    <div class="col-sm-10 col-md-10">
+                        <input type="text" class="form-control" id="user.attributes.street" name="user.attributes.street"
+                            value="${(account.attributes.street!'')}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2 col-md-2">
+                        <label for="user.attributes.city" class="control-label">City</label>
+                    </div>
+
+                    <div class="col-sm-10 col-md-10">
+                        <input type="text" class="form-control" id="user.attributes.city" name="user.attributes.city"
+                            value="${(account.attributes.city!'')}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div id="kc-form-buttons" class="col-md-offset-2 col-md-10 submit">
+                        <div class="">
+                            <#if url.referrerURI??><a
+                                    href="${url.referrerURI}">${kcSanitize(msg("backToApplication")?no_esc)}</a></#if>
+                            <button type="submit"
+                                class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}"
+                                name="submitAction" value="Save">${msg("doSave")}</button>
+                            <button type="submit"
+                                class="${properties.kcButtonClass!} ${properties.kcButtonDefaultClass!} ${properties.kcButtonLargeClass!}"
+                                name="submitAction" value="Cancel">${msg("doCancel")}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </@layout.mainLayout>
+  properties: |
+    parent=keycloak
+    import=common/keycloak
