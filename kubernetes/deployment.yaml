@@ -71,7 +71,7 @@ spec:
         volumeMounts:
           - name: id-volume
             subPath: account
-            mountPath: /opt/keycloak/themes/custom/account/account.tfl
+            mountPath: /opt/keycloak/themes/custom/account/account.ftl
           - name: id-volume
             subPath: properties
             mountPath: /opt/keycloak/themes/custom/account/theme.properties
