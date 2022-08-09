@@ -168,7 +168,7 @@ data:
 
             <div class="form-group ${messagesPerField.printIfExists('firstName','has-error')}">
                 <div class="col-sm-2 col-md-2">
-                    <label for="firstName" class="control-label">${msg("firstName")}</label> <span
+                    <label for="firstName" class="control-label">Vorname</label> <span
                         class="required">*</span>
                 </div>
 
@@ -180,7 +180,7 @@ data:
 
             <div class="form-group ${messagesPerField.printIfExists('lastName','has-error')}">
                 <div class="col-sm-2 col-md-2">
-                    <label for="lastName" class="control-label">${msg("lastName")}</label> <span
+                    <label for="lastName" class="control-label">Nachname</label> <span
                         class="required">*</span>
                 </div>
 
@@ -245,10 +245,10 @@ data:
                                 href="${url.referrerURI}">${kcSanitize(msg("backToApplication")?no_esc)}</a></#if>
                         <button type="submit"
                             class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}"
-                            name="submitAction" value="Save">${msg("doSave")}</button>
+                            name="submitAction" value="Save">Speichern</button>
                         <button type="submit"
                             class="${properties.kcButtonClass!} ${properties.kcButtonDefaultClass!} ${properties.kcButtonLargeClass!}"
-                            name="submitAction" value="Cancel">${msg("doCancel")}</button>
+                            name="submitAction" value="Cancel">Löschen</button>
                     </div>
                 </div>
             </div>
