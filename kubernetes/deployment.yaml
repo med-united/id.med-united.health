@@ -141,7 +141,7 @@ data:
                     <h2>${msg("editAccountHtmlTitle")}</h2>
                 </div>
                 <div class="col-md-2 subtitle">
-                    <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
+                    <span class="subtitle"><span class="required">*</span> Test</span>
                 </div>
             </div>
 
