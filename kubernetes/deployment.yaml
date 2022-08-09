@@ -249,7 +249,7 @@ data:
                         <button type="submit"
                             class="${properties.kcButtonClass!} ${properties.kcButtonDefaultClass!} ${properties.kcButtonLargeClass!}"
                             name="submitAction" value="Cancel">Löschen</button>
-                        <button onclick="location.href = 'https://care.med-united.health/';"
+                        <button type="button" onclick="location.href = 'https://care.med-united.health/';"
                             class="${properties.kcButtonClass!} ${properties.kcButtonDefaultClass!} ${properties.kcButtonLargeClass!}"
                             name="goBack" value="Back">Zurück zu Med-United</button>
                     </div>
