@@ -308,9 +308,9 @@ data:
                                         <div class="checkbox">
                                             <label>
                                                 <#if login.rememberMe??>
-                                                    <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox" checked> Errinnern}
+                                                    <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox" checked> Errinnere mich
                                                 <#else>
-                                                    <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox"> Errinnern}
+                                                    <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox"> Errinnere mich
                                                 </#if>
                                             </label>
                                         </div>
