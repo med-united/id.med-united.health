@@ -311,9 +311,9 @@ data:
                                         <div class="checkbox">
                                             <label>
                                                 <#if login.rememberMe??>
-                                                    <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox" checked> Errinnere mich
+                                                    <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox" checked> Log-In Daten merken
                                                 <#else>
-                                                    <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox"> Errinnere mich
+                                                    <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox"> Log-In Daten merken
                                                 </#if>
                                             </label>
                                         </div>
