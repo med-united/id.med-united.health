@@ -243,7 +243,7 @@ data:
                     <div class="">
                         <#if url.referrerURI??><a
                                 href="${url.referrerURI}">${kcSanitize(msg("backToApplication")?no_esc)}</a></#if>
-                        <button type="submit"
+                        <button type="submit" onclick="location.href = 'https://care.med-united.health/';"
                             class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}"
                             name="submitAction" value="Save">Speichern</button>
                         <button type="submit"
