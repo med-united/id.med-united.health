@@ -78,6 +78,9 @@ spec:
             - name: id-volume
               subPath: login
               mountPath: /opt/keycloak/themes/custom/login/login.ftl
+            - name: id-volume
+              subPath: login-properties
+              mountPath: /opt/keycloak/themes/custom/login/theme.properties
       volumes:
         - name: id-volume
           configMap:
@@ -363,3 +366,6 @@ data:
                 </#if>
 
         </@layout.registrationLayout>
+  login-properties: |
+    parent=keycloak
+    import=common/keycloak
