@@ -96,6 +96,9 @@ spec:
             - name: id-volume
               subPath: html-template
               mountPath: /opt/keycloak/themes/custom/email/html/template.ftl
+            - name: id-volume
+              subPath: html-properties
+              mountPath: /opt/keycloak/themes/custom/email/html/theme.properties
       volumes:
         - name: id-volume
           configMap:
@@ -553,3 +556,6 @@ data:
     </body>
     </html>
     </#macro>
+  html-properties: |
+    parent=keycloak
+    import=common/keycloak
