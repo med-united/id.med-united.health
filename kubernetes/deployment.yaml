@@ -93,6 +93,9 @@ spec:
             - name: id-volume
               subPath: email-verification-html
               mountPath: /opt/keycloak/themes/custom/email/html/email-verification.ftl
+            - name: id-volume
+              subPath: html-template
+                mountPath: /opt/keycloak/themes/custom/email/html
       volumes:
         - name: id-volume
           configMap:
