@@ -86,7 +86,7 @@ spec:
               mountPath: /opt/keycloak/themes/custom/login/register.ftl
             - name: id-volume
               subPath: email-german
-              mountPath: /opt/keycloak/themes/custom/email/messages/messages_de.properties
+              mountPath: /opt/keycloak/themes/custom/email/messages_de.properties
       volumes:
         - name: id-volume
           configMap:
