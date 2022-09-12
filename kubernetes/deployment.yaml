@@ -557,4 +557,4 @@ data:
     </html>
     </#macro>
   email-properties: |
-    locales=en,no
+    locales=en,de
