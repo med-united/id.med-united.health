@@ -96,9 +96,6 @@ spec:
             - name: id-volume
               subPath: html-template
               mountPath: /opt/keycloak/themes/custom/email/html/template.ftl
-            - name: id-volume
-              subPath: email-properties
-              mountPath: /opt/keycloak/themes/custom/email/theme.properties
       volumes:
         - name: id-volume
           configMap:
@@ -537,9 +534,9 @@ data:
         </#if>
     </@layout.registrationLayout>
   email-german: |
-    emailVerificationSubject=Verify email
-    emailVerificationBody=Someone has created a {2} account with this email address. If this was you, click the link below to verify your email address\n\n{0}\n\nThis link will expire within {3}.\n\nIf you didn''t create this account, just ignore this message.
-    emailVerificationBodyHtml=<p>Someone has created a {2} account with this email address. If this was you, click the link below to verify your email address</p><p><a href="{0}">Link to e-mail address verification</a></p><p>This link will expire within {3}.</p><p>If you didn''t create this account, just ignore this message.</p>
+    emailVerificationSubject=E-Mail bestätigen
+    emailVerificationBody=Jemand hat mit dieser E-Mail-Adresse ein {2}-Konto erstellt. Wenn Sie das waren, klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen\n\n{0}\n\nDieser Link läuft innerhalb von {3} Minuten ab.\n\nWenn Sie dieses Konto nicht erstellt haben, ignorieren Sie diese Nachricht einfach.
+    emailVerificationBodyHtml=<p>Jemand hat mit dieser E-Mail-Adresse ein {2}-Konto erstellt. Wenn Sie das waren, klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen</p><p><a href="{0}">Link zur Überprüfung der E-Mail-Adresse</a></p><p>Dieser Link läuft innerhalb von {3} Minuten ab.</p><p>Wenn Sie dieses Konto nicht erstellt haben, ignorieren Sie diese Nachricht einfach.</p>
   email-verification: |
     <#ftl output_format="plainText">
     ${msg("emailVerificationBody",link, linkExpiration, realmName, linkExpirationFormatter(linkExpiration))}
@@ -556,5 +553,3 @@ data:
     </body>
     </html>
     </#macro>
-  email-properties: |
-    locales=en,de
