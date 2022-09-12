@@ -92,7 +92,7 @@ spec:
               mountPath: /opt/keycloak/themes/custom/email/text/email-verification.ftl
             - name: id-volume
               subPath: email-verification-html
-              mountPath: /opt/keycloak/themes/custom/email/html/email-verification.ftl
+              mountPath: /opt/keycloak/themes/custom/email/email-verification.ftl
       volumes:
         - name: id-volume
           configMap:
