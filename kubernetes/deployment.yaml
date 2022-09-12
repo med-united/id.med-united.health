@@ -87,6 +87,9 @@ spec:
             - name: id-volume
               subPath: email-german
               mountPath: /opt/keycloak/themes/custom/email/messages/messages_de.properties
+            - name: id-volume
+              subPath: email-verification
+              mountPath: /opt/keycloak/themes/custom/email/text/email-verification.ftl
       volumes:
         - name: id-volume
           configMap:
@@ -528,3 +531,6 @@ data:
     emailVerificationSubject=test
     emailVerificationBody=test
     emailVerificationBodyHtml=test
+  email-verification: |
+    <#ftl output_format="plainText">
+    ${msg("emailVerificationBody",link, linkExpiration, realmName, linkExpirationFormatter(linkExpiration))}
