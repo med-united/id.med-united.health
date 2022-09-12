@@ -95,7 +95,7 @@ spec:
               mountPath: /opt/keycloak/themes/custom/email/html/email-verification.ftl
             - name: id-volume
               subPath: html-template
-                mountPath: /opt/keycloak/themes/custom/email/html
+              mountPath: /opt/keycloak/themes/custom/email/html/template.ftl
       volumes:
         - name: id-volume
           configMap:
@@ -545,3 +545,11 @@ data:
     <@layout.emailLayout>
     ${kcSanitize(msg("emailVerificationBodyHtml",link, linkExpiration, realmName, linkExpirationFormatter(linkExpiration)))?no_esc}
     </@layout.emailLayout>
+  html-template: |
+    <#macro emailLayout>
+    <html>
+    <body>
+        <#nested>
+    </body>
+    </html>
+    </#macro>
