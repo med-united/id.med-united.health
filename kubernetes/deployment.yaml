@@ -84,6 +84,9 @@ spec:
             - name: id-volume
               subPath: register-properties
               mountPath: /opt/keycloak/themes/custom/login/register.ftl
+            - name: id-volume
+              subPath: email-german
+              mountPath: /opt/keycloak/themes/custom/email/messages/messages_de.properties
       volumes:
         - name: id-volume
           configMap:
@@ -521,3 +524,7 @@ data:
             </form>
         </#if>
     </@layout.registrationLayout>
+  email-german: |
+    emailVerificationSubject=test
+    emailVerificationBody=test
+    emailVerificationBodyHtml=test
