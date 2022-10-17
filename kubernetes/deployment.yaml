@@ -534,9 +534,10 @@ data:
         </#if>
     </@layout.registrationLayout>
   email-german: |
-    emailVerificationSubject=E-Mail bestätigen
-    emailVerificationBody=Jemand hat mit dieser E-Mail-Adresse ein {2}-Konto erstellt. Wenn Sie das waren, klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen\n\n{0}\n\nDieser Link läuft innerhalb von {3} Minuten ab.\n\nWenn Sie dieses Konto nicht erstellt haben, ignorieren Sie diese Nachricht einfach.
-    emailVerificationBodyHtml=<p>Jemand hat mit dieser E-Mail-Adresse ein {2}-Konto erstellt. Wenn Sie das waren, klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestätigen</p><p><a href="{0}">Link zur Überprüfung der E-Mail-Adresse</a></p><p>Dieser Link läuft innerhalb von {3} Minuten ab.</p><p>Wenn Sie dieses Konto nicht erstellt haben, ignorieren Sie diese Nachricht einfach.</p>
+    emailVerificationSubject=E-Mail bestaetigen
+    emailVerificationBody=Jemand hat mit dieser E-Mail-Adresse ein {2}-Konto erstellt. Wenn Sie das waren, klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestaetigen\n\n{0}\n\nDieser Link läuft innerhalb von {3} Minuten ab.\n\nWenn Sie dieses Konto nicht erstellt haben, ignorieren Sie diese Nachricht einfach.
+    emailVerificationBodyHtml=<p>Jemand hat mit dieser E-Mail-Adresse ein {2}-Konto erstellt. Wenn Sie das waren, klicken Sie auf den Link unten, um Ihre E-Mail-Adresse zu bestaetigen</p><p><a href="{0}">Link zur Ueberpruefung der E-Mail-Adresse</a></p><p>Dieser Link laeuft innerhalb von {3} ab.</p><p>Wenn Sie dieses Konto nicht erstellt haben, ignorieren Sie diese Nachricht einfach.</p>
+    linkExpirationFormatter.timePeriodUnit.minutes=Minuten
   email-verification: |
     <#ftl output_format="plainText">
     ${msg("emailVerificationBody",link, linkExpiration, realmName, linkExpirationFormatter(linkExpiration))}
